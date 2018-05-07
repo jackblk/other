@@ -79,13 +79,13 @@
   
 <p class="p">Login, type in Bosch email then Grab It!</p>
 
-<textarea rows="1" id="textbox" cols="40" class="textarea"></textarea>
+<input id="textbox" class="textarea" onkeypress="return searchKeyPress(event);"></input>
 
 <p></p>
 
 <div class="wrapper">
 <button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login First</button>
-<button type="button" class="btn" onclick="picture()">Grab It!</button>
+<button type="button" id="grabbtn" class="btn" onclick="picture()">Grab It!</button>
 <button type="button" class="btn" onclick="insertText()">Insert Sample</button>
 </div>
 
@@ -117,6 +117,18 @@ function picture(){
    document.getElementById('bigpic').src = piclink;
    document.getElementById('bigpic').style.display='block';
 
+}
+
+function searchKeyPress(e)
+{
+    // look for window.event in case event isn't passed in
+    e = e || window.event;
+    if (e.keyCode == 13)
+    {
+        document.getElementById('grabbtn').click();
+        return false;
+    }
+    return true;
 }
 //]]> 
 
