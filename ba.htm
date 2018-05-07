@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bosch Avatar Grabber</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <style type="text/css">
+    .body {background: #F0F0F0;}
+
+.invi {
+    display: none;
+    visibility: hidden;
+}
+
+.textarea {
+  display: block;
+  margin: auto;
+  resize: none; 
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+  border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: #555555;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+
+.textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+.h1 { color: #235ebc; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0 0 5px; text-align: center; }
+
+.p { color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; line-height: 32px; margin: auto; text-align: center; font-weight: bold;}
+
+.p:hover{
+  color: #1a5fce;
+  font-weight: bold;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.btn {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #201d7a;
+  text-decoration: none;
+}
+  </style>
+
+  <title></title>
+
+  
+</head>
+
+<body>
+  <div class="h1">Bosch Avatar Grabber</div>
+
+<textarea rows="1" id="textbox" cols="40" class="textarea"></textarea>
+
+<div></div>
+
+<div class="wrapper">
+<button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login First</button>
+<button type="button" class="btn" onclick="picture()">Grab avatar</button>
+<button type="button" class="btn" onclick="insertText()">Insert Sample</button>
+</div>
+
+<hr>
+<div>
+  <center><img id="bigpic" src="bigpic" style="display:none;" /></center>
+</div>
+
+<textarea rows="1" id="sample" cols="1" class="invi">
+Yogi.XUE@cn.bosch.com
+</textarea>
+  
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+
+function insertText(){
+var sample = document.getElementById("sample").innerHTML;
+document.getElementById("textbox").value = sample;
+}
+
+
+function picture(){ 
+   var piclink = document.getElementById("textbox").value;
+   var reg = piclink.match(/(\S+)@(\S+bosch\.com)/i);
+   piclink = "https://rb-owa.apac.bosch.com/owa/service.svc/s/GetPersonaPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648"
+   document.getElementById('bigpic').src = piclink;
+   document.getElementById('bigpic').style.display='block';
+
+}
+//]]> 
+
+</script>
+
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "gfqegg21"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>
