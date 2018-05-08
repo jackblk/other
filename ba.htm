@@ -102,7 +102,7 @@ Yogi.XUE@cn.bosch.com
 
 
 
-<script type='text/javascript'>//<![CDATA[
+<script type='text/javascript'>
 
 function insertText(){
 var sample = document.getElementById("sample").innerHTML;
@@ -112,11 +112,14 @@ document.getElementById("textbox").value = sample;
 
 function picture(){ 
    var piclink = document.getElementById("textbox").value;
-   var reg = piclink.match(/(\S+)@(\S+bosch\.com)/i);
-   piclink = "https://rb-owa.apac.bosch.com/owa/service.svc/s/GetPersonaPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648"
-   document.getElementById('bigpic').src = piclink;
-   document.getElementById('bigpic').style.display='block';
-
+   if (/(\S+)@(\S+bosch\.com)/.test(piclink)) {
+        var reg = piclink.match(/(\S+)@(\S+bosch\.com)/i);
+		piclink = "https://rb-owa.apac.bosch.com/owa/service.svc/s/GetPersonaPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648"
+		document.getElementById('bigpic').src = piclink;
+		document.getElementById('bigpic').style.display='block';
+		return;
+   }
+   alert("Please enter valid Bosch Email, for example: abc@vn.bosch.com");
 }
 
 function searchKeyPress(e)
@@ -130,7 +133,6 @@ function searchKeyPress(e)
     }
     return true;
 }
-//]]> 
 
 </script>
 
