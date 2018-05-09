@@ -85,7 +85,7 @@
 <p></p>
 
 <div class="wrapper">
-<button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login First</button>
+<button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login</button>
 <button type="button" id="grabbtn" class="btn" onclick="picture()">Grab It!</button>
 <button type="button" class="btn" onclick="insertText()">Insert Sample</button>
 </div>
@@ -117,7 +117,15 @@ function picture(){
         var reg = piclink.match(/(\S+)@(\S+bosch\.com)/i);
 		piclink = "https://rb-owa.apac.bosch.com/owa/service.svc/s/GetPersonaPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648"
 		document.getElementById('bigpic').src = piclink;
-		document.getElementById('bigpic').style.display='block';
+		
+		setTimeout(function(){
+			if (bigpic.naturalWidth) {
+				document.getElementById('bigpic').style.display='block';
+				}
+			else {
+				alert("Please login first!");
+				}
+			}, 1000); //wait 1s to load
 		return;
    }
    alert("Please enter valid Bosch Email, for example: abc@vn.bosch.com");
