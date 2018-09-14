@@ -120,7 +120,7 @@ function picture(){
 	var piclink = document.getElementById("textbox").value;
 	if (/(\S+)@(\S+bosch\.com)/.test(piclink)) {
 		var reg = piclink.match(/(\S+)@(\S+bosch\.com)/i); //regex to check bosch email
-		piclink = "https://rb-owa.apac.bosch.com/owa/service.svc/s/GetPersonaPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
+		piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
 		document.getElementById('bigpic').src = piclink;
 		document.getElementById('directlink').href=piclink;
 		
