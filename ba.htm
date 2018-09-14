@@ -78,15 +78,15 @@ background: #201d7a;
 <body>
 <div class="h1">Bosch Avatar Grabber</div>
 
-<p class="p">Login, type in Bosch email then Grab It!</p>
+<p class="p">Type in Bosch Email then press GRAB IT! button.</p>
 
 <input id="textbox" size="35" class="textarea" onkeypress="return searchKeyPress(event);"></input>
 
 <p></p>
 
 <div class="wrapper">
-<button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login</button>
-<button type="button" id="grabbtn" class="btn" onclick="picture()">Grab It!</button>
+<!-- <button type="button" class="btn" onclick="window.open('https://rb-owa.apac.bosch.com/owa/', '_blank');">Login</button> -->
+<button type="button" id="grabbtn" class="btn" onclick="picture()">GRAB IT!</button>
 <button type="button" class="btn" onclick="insertText()">Insert Sample</button>
 </div>
 
@@ -153,7 +153,7 @@ function searchKeyPress(e)
 }
 
 function imgError() {
-	alert("Please login first! If logged in, does the email exist? Try using Chrome if this error keeps happening.");
+	alert("User might not have profile pic.");
 	console.log(bigpic.naturalWidth, bigpic.naturalHeight);
 }
 
