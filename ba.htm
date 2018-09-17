@@ -73,10 +73,7 @@
 		text-decoration: none;
 	display: inline-block;
 		font-size: 16px;
-		text-decoration: none;
-	<!-- height: 25%; -->
-	
-	
+		text-decoration: none;	
 }
 
 .btn:hover {
@@ -105,6 +102,7 @@
 <div class="wrapper">
 <button type="button" class="btn" onclick="insertText()">Insert Sample</button>
 <button type="button" class="btn" onclick="clearAll()">Clear</button>
+<button type="button" class="btn" onclick="copyUrl()">Share link</button>
 </div>
 
 <hr width="35%">
@@ -128,15 +126,16 @@ function insertText(){
 
 function picture(){ 
 	var email = document.getElementById("textbox").value;
-	// Add exception
-	if (email.match(/(tong\.VuuVan)@\S*bosch\.com/i)) {
+	var regexEmail = new RegExp(/(\S+)@(\S*bosch\.com)/,'i');
+	// Add exception => not grabbing
+	if (email.match(/(tong\.vuuVan)@\S*bosch\.com/i)) {
 		console.log("lul");
 		document.getElementById('bigpic').style.display='none';
 		return;
 	}
 	
-	if (/(\S+)@(\S*bosch\.com)/i.test(email)) {
-		var reg = email.match(/(\S+)@(\S*bosch\.com)/i); //regex to check bosch email
+	if (regexEmail.test(email)) {
+		var reg = email.match(regexEmail); //regex to check bosch email
 		var piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
 		document.getElementById('bigpic').src = piclink;
 		document.getElementById('loading').style.display='block';
@@ -171,7 +170,7 @@ function searchKeyPress(e)
 }
 
 function imgError() {
-	alert("User might not have profile pic.");
+	alert("User might not have profile pic or wrong email.");
 	console.log(bigpic.naturalWidth, bigpic.naturalHeight);
 }
 
@@ -188,26 +187,36 @@ window.onload = function() {
 }
 
 function editUrl (email){
+	var regexHtml = new RegExp(/^.*\.html*/,'i');
 	if (email != null) {
 		if (history.pushState) {
 			window.history.pushState({}, email, '?email=' + email);
 		} else { // use this way if old browser, will reload the page
 			var url = window.location.href;
-			window.location.href = url.match(/^.*\.html*/i) + '?email=' + email;
+			window.location.href = url.match(regexHtml) + '?email=' + email;
 		}
 	} else {
 		if (history.pushState) {
-			var url = window.location.href.match(/^.*\.html*/i);
+			var url = window.location.href.match(regexHtml);
 			window.history.pushState({}, email, url);
 		} else { // use this way if old browser, will reload the page
 			var url = window.location.href;
-			window.location.href = url.match(/^.*\.html*/i);
+			window.location.href = url.match(regexHtml);
 		}
 	}
 }
 
 function copyUrl() {
-	var url = document.location.href;
+	if (document.getElementById('bigpic').style.display != 'block') {
+		alert("Please grab avatar before sharing");
+		return;
+	}
+    var textArea = document.createElement("textarea");
+    textArea.value = document.location.href;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    textArea.remove();
 }
 
 function clearAll() {
@@ -216,6 +225,7 @@ function clearAll() {
 	editUrl();
 }
 </script>
+
 
 <script>
 // tell the embed parent frame the height of the content
