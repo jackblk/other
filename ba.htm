@@ -125,13 +125,13 @@ function picture(){
 		editUrl(email);
 		// display image if successfully loaded
 		bigpic.onload = function() {
-			if (bigpic.naturalWidth){
+			if (bigpic.naturalHeight){
 				document.getElementById('bigpic').style.display='block';
 				if (bigpic.naturalHeight != 648) {
-					document.getElementById('directlink').style.display='block';	
+					<!-- document.getElementById('directlink').style.display='block';	 -->
 				}
 				document.getElementById('loading').style.display='none';
-				<!-- console.log(bigpic.naturalWidth, bigpic.naturalHeight); -->
+				console.log(bigpic.naturalWidth, bigpic.naturalHeight);
 			}
 		}
 		return;
