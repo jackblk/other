@@ -90,7 +90,7 @@
 <hr width="35%">
 
 <div>
-<center><a id="directlink" style="display:none;" href="" target="_blank">Direct Link</a></center>
+<!-- <center><a id="directlink" style="display:none;" href="" target="_blank">Direct Link</a></center> -->
 </div>
 
 <div>
@@ -121,7 +121,7 @@ function picture(){
 		var piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
 		document.getElementById('bigpic').src = piclink;
 		document.getElementById('loading').style.display='block';
-		document.getElementById('directlink').href=piclink;
+		<!-- document.getElementById('directlink').href=piclink; -->
 		editUrl(email);
 		// display image if successfully loaded
 		bigpic.onload = function() {
