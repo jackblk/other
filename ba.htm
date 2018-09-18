@@ -153,6 +153,7 @@ function searchKeyPress(e)
 
 function imgError() {
 	alert("Can't fetch avatar. Possible reason: you are not connected to Bosch internal network / Wrong email / Email does not have photo.");
+	document.getElementById('loading').style.display='none';
 	console.log(bigpic.naturalWidth, bigpic.naturalHeight);
 }
 
