@@ -193,12 +193,12 @@ function copyUrl() {
 		alert("Please grab avatar before copying");
 		return;
 	}
-    var textArea = document.createElement("textarea");
-    textArea.value = document.location.href;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("Copy");
-    textArea.remove();
+	var textArea = document.createElement("textarea");
+	textArea.value = document.location.href;
+	document.body.appendChild(textArea);
+	textArea.select();
+	document.execCommand("Copy");
+	textArea.remove();
 }
 
 function clearAll() {
