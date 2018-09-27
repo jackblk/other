@@ -131,7 +131,7 @@ function picture(){
 	var email = document.getElementById("textbox").value;
 	var regexEmail = new RegExp(/(\S+)@(\S*bosch\.com)/,'i');
 	// Add exception => not grabbing
-	if (email.match(/(tong\.vuuVan)@\S*bosch\.com/i)) {
+	if (email.match(/((tong\.vuuVan)|(trung\.lethien))@\S*bosch\.com/i)) {
 		console.log("lul");
 		document.getElementById('bigpic').style.display='none';
 		return;
