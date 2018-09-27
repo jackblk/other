@@ -66,7 +66,7 @@
 	
 .counter {
 	margin: 0 auto;
-	height: 100px;
+	height: 20px;
 	width: 648px;
 	display: inline-block;
 	position: relative;
@@ -104,20 +104,20 @@
 <button type="button" class="btn" onclick="copyUrl()">Copy link</button>
 </div>
 
+
 <hr width="648px">
 
-<div>
-<!-- <center><a id="directlink" style="display:none;" href="" target="_blank">Direct Link</a></center> -->
+<div style="height: 30px;">
+<center><p id="loading" style="visibility: hidden;">Loading...</p></center>
 </div>
 
-<div>
-<center><p id="loading" style="display:none;">Loading...</p></center>
-<center><img id="bigpic" style="display:none;" onerror="imgError();"></center>
+<div style="height: 648px;">
+	<div><center><img id="bigpic" style="display:none;" onerror="imgError();"></center></div>
 </div>
 	
-<center>
-<div class="counter"><img align=right id="bottom-right" src='https://www.counter12.com/img-91y5d9ay3way9dw1-45.gif' border='0' alt='counter'><script type='text/javascript' src='https://www.counter12.com/ad.js?id=91y5d9ay3way9dw1'></script></div>
-</center>
+<center><div class="counter">
+<img id="bottom-right" src="https://www.reliablecounter.com/count.php?page=jackblk.github.io/other/ba.htm&digit=style/plain/3/&reloads=0" alt="" title="" border="0">
+</div></center>
 
 
 <script type='text/javascript'>
@@ -141,18 +141,14 @@ function picture(){
 		var reg = email.match(regexEmail); //regex to check bosch email
 		var piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
 		document.getElementById('bigpic').src = piclink;
-		document.getElementById('loading').style.display='block';
+		document.getElementById('loading').style.visibility='visible';
 		<!-- document.getElementById('directlink').href=piclink; -->
 		editUrl(email);
 		// display image if successfully loaded
 		bigpic.onload = function() {
 			if (bigpic.naturalHeight){
 				document.getElementById('bigpic').style.display='block';
-				if (bigpic.naturalHeight != 648) {
-					<!-- document.getElementById('directlink').style.display='block';	 -->
-				}
-				document.getElementById('loading').style.display='none';
-				console.log(bigpic.naturalWidth, bigpic.naturalHeight);
+				document.getElementById('loading').style.visibility='hidden';
 			}
 		}
 		return;
@@ -174,7 +170,7 @@ function searchKeyPress(e)
 
 function imgError() {
 	alert("Can't fetch avatar. Possible reason: you are not connected to Bosch internal network / Wrong email / Email does not have photo.");
-	document.getElementById('loading').style.display='none';
+	document.getElementById('loading').style.visibility='hidden';
 }
 
 window.onload = function() {
