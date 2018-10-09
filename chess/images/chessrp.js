@@ -54,8 +54,8 @@ function chessrpMain() {
 
 	var s = "";
 	//s += '<div>';
-	s += '<audio id="sndmove" src="/sounds/move.mp3" preload="auto"></audio>'
-	s += '<audio id="sndtake" src="/sounds/capture.mp3" preload="auto"></audio>'
+	s += '<audio id="sndmove" src="https://www.mathsisfun.com/images/sounds/click2.mp3" preload="auto"></audio>'
+	s += '<audio id="sndtake" src="https://www.mathsisfun.com/images/sounds/take.mp3" preload="auto"></audio>'
 
 	s += '<div id="main" style="position:relative; width:' + w + 'px; min-height:' + (h + 150) + 'px; border: none;  background-color: white; margin:auto; display:block;">';
 
