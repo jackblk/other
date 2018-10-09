@@ -113,7 +113,7 @@ function chessrpMain() {
 
 	s += '</div>';
 
-	s += '<div id="copyrt" style="position:relative; text-align:center;font: 10px Arial; color: #aaa;">&copy; 2017 MathsIsFun.com  v' + my.version + '</div>';
+	//s += '<div id="copyrt" style="position:relative; text-align:center;font: 10px Arial; color: #aaa;">&copy; 2017 MathsIsFun.com  v' + my.version + '</div>';
 	s += '</div>';
 	document.write(s);
 	
