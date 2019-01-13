@@ -1,0 +1,1 @@
+attrib +R C:\Windows\System32\SleepStudy\* /s /d
