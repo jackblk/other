@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="description" content="Created by Trung">
+	<meta charset="utf-8">
+	<title>EOL Helper</title>
+</head>
+
+<body>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="main.css">
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Latest Sortable -->
+	<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+	<div class="container">
+		<h4 class="col-12">Input EOL</h4>
+		<div class="row">
+			<div class="col">
+				<div class="md-form">
+					<textarea id="inputForm" class="md-textarea form-control" rows="4"></textarea>
+				</div>
+			</div>
+			<div class="col">
+				<div class="container">
+					<div class="row">
+						<button class="btn btn-primary center-block" onclick="generateList()">Generate steps</button>
+					</div>
+				</div>
+				<br>
+				<div class="container">
+					<div class="row">
+						<button class="btn btn-info" onclick="clearList()">Clear EOL Steps</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div id="exportButton" class="list-group col-3">
+				<button type="button" class="btn btn-success" onclick="exportMapping()">Export mapping</button>
+			</div>
+		</div>
+		<hr>
+		<div id="shared-lists" class="row">
+			<div id="supportedSteps" class="list-group col-4">Predefined steps</div>
+			<div id="finalSteps" class="list-group col-4">EOL steps</div>
+			<div id="stepNumber" class="list-group col-1">Step no.</div>
+		</div>
+		<pre id="defaultValue" style="display:none">
+ '1' => 'REQ_StartSession_ExtendedSession',
+ '2' => 'REQ_SecurityAccess_RequestSeed_Level1',
+ '3' => 'REQ_ReadDatabyID_CustPrtNbr',
+ '4' => 'REQ_WriteDatabyID_VIN',
+ '5' => 'REQ_ReadDatabyID_CustSWVer',
+ '6' => 'REQ_ReadDatabyID_CustHWVer',
+ '7' => 'REQ_ReadDatabyID_ManuFactoryMode',
+ '8' => 'REQ_ReadDatabyID_ECUCalibrationSWID',
+ '9' => 'REQ_WriteDatabyID_DateVehProd',
+ '10' => 'REQ_WriteDatabyID_WriteEOLConfiguration',
+ '11' => 'REQ_WriteDatabyID_WriteMTOC',
+ '12' => 'REQ_ECUReset_SoftReset',
+ '13' => 'REQ_ReadDatabyID_ECUConfig',
+ '14' => 'REQ_ReadDTC_reportDTCByStatusMask',
+ '15' => 'REQ_RoutineControl_StartRoutine',
+ '16' => 'REQ_RoutineControl_RequestRoutine',
+ '17' => 'REQ_RoutineControl_StopRoutine' ,
+ '18' => 'REQ_WriteDatabyID_CustWriteIMUCalibrationState',
+ '19' => 'REQ_WriteDatabyID_CustWriteECUCustomerMode',
+ '20' => 'REQ_ClearDTC_ClearDTCAll',
+ '21' => 'REQ_ReadDatabyID_CustWriteECUCustomerMode',
+ '22' => 'REQ_ReadDatabyID_SystemName',
+ '23' => 'REQ_ReadDatabyID_ProgramDate',
+ '24' => 'WaitTime_1000',
+ '25' => 'WaitTime_2000',
+ '26' => 'WaitTime_4000',
+ '27' => 'WaitTime_5000',
+ '28' => 'WaitTime_6000',
+ '29' => 'WaitTime_8000',
+ '30' => 'WaitTime_12000',
+ '31' => 'LC_ECU_Off',
+ '32' => 'LC_ECU_On',</pre>
+		<script src="main.js"></script>
+</body>
+
+</html>
