@@ -5,5 +5,5 @@ body {
 .list-group-item {
   cursor: move;
   cursor: -webkit-grabbing;
-  padding: .15rem 1.25rem;
+  padding: .02rem 1rem;
 }
