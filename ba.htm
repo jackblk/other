@@ -175,6 +175,7 @@ function imgError() {
 
 window.onload = function() {
 	var url = window.location.href;
+	url = url.replace("%40", "@");
 	var reg = url.match(/(\.html*\?email=)(\S+@\S*bosch\.com)/i); //regex to check for argument
 	if (reg != null) {
 		document.getElementById("textbox").value = reg[2];
