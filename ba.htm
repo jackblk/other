@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +94,7 @@
 
 <div class="wrapper">
 <input id="textbox" size="30" class="textarea" spellcheck="false" onkeypress="return searchKeyPress(event);">
-<button type="button" id="grabbtn" class="btn" onclick="picture()">GRAB IT!</button>
+<button type="button" id="grabbtn" class="btn" onclick="multiPic()">GRAB IT!</button>
 </div>
 
 <p></p>
@@ -107,6 +108,8 @@
 
 <hr width="648px">
 
+<div class="wrapper" id="multi"></div>
+
 <div style="height: 30px;">
 <center><p id="loading" style="visibility: hidden;">Loading...</p></center>
 </div>
@@ -114,10 +117,6 @@
 <div style="height: 648px;">
 	<div><center><img id="bigpic" style="display:none;" onerror="imgError();"></center></div>
 </div>
-	
-<center><div class="counter">
-<img src="https://www.reliablecounter.com/count.php?page=jackblk.github.io/other/ba.htm&digit=style/plain/3/&reloads=0" alt="" title="" border="0">
-</div></center>
 
 
 <script type='text/javascript'>
@@ -126,6 +125,17 @@ function insertText(){
 	document.getElementById("textbox").value = "Yogi.XUE@cn.bosch.com";
 }
 
+function multiPic() {
+	var input = document.getElementById("textbox").value;
+	var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+	for (var i in emails) {
+		console.log(emails[i]);
+		var img = document.createElement("img");
+		img.src = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + emails[i] + "&UA=0&size=HR648x648";
+		var src = document.getElementById("multi");
+		src.appendChild(img);
+	}
+}
 
 function picture(){ 
 	var email = document.getElementById("textbox").value;
@@ -155,6 +165,8 @@ function picture(){
 	}
 	alert("Please enter valid Bosch Email, for example: abc@vn.bosch.com");
 }
+
+
 
 function searchKeyPress(e)
 {
