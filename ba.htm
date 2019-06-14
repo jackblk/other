@@ -126,6 +126,8 @@ function insertText(){
 
 function multiPic() {
 	var input = document.getElementById("textbox").value;
+	input = emailFormatter(input);
+	document.getElementById("textbox").value = input;
 	var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
 	var src = document.getElementById("multi");
 	src.innerHTML = '';
@@ -135,6 +137,7 @@ function multiPic() {
 		img.src = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + emails[i] + "&UA=0&size=HR648x648";
 		src.appendChild(img);
 	}
+	editUrl(emails)
 }
 
 function picture(){ 
@@ -167,7 +170,6 @@ function picture(){
 }
 
 
-
 function searchKeyPress(e)
 {
 	// look for window.event in case event isn't passed in
@@ -188,14 +190,30 @@ function imgError() {
 window.onload = function() {
 	var url = window.location.href;
 	url = url.replace("%40", "@");
-	var reg = url.match(/(\.html*\?email=)(\S+@\S*bosch\.com)/i); //regex to check for argument
-	if (reg != null) {
-		document.getElementById("textbox").value = reg[2];
-		var input = document.getElementById("textbox").focus();
-		picture();
+	//var reg = url.match(/(\.html*\?email=)(\S+@\S*bosch\.com)/i); //regex to check for argument
+	var reg = emailFormatter(url);
+	if (reg != '') {
+		document.getElementById("textbox").value = reg;
+		document.getElementById("textbox").focus();
+		// picture();
+		multiPic();
 	} else {
 		editUrl();
 	}
+}
+
+function emailFormatter(input) {
+	var reg = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+	var emails = '';
+	if (reg != null) {
+		for (var i=0; i < reg.length; i++) {
+			emails = emails + reg[i] + ',';
+		}
+		return emails;
+	} else {
+		return '';
+	}
+	
 }
 
 function editUrl (email){
@@ -219,12 +237,12 @@ function editUrl (email){
 }
 
 function copyUrl() {
-	if (document.getElementById('bigpic').style.display != 'block') {
-		alert("Please grab avatar before copying");
-		return;
-	}
+	// if (document.getElementById('bigpic').style.display != 'block') {
+	// 	alert("Please grab avatar before copying");
+	// 	return;
+	// }
 	var textArea = document.createElement("textarea");
-	textArea.value = document.location.href;
+	textArea.value = 'https://jackblk.github.io/other/ba.htm?email=' + document.getElementById("textbox").value;
 	document.body.appendChild(textArea);
 	textArea.select();
 	document.execCommand("Copy");
@@ -233,6 +251,7 @@ function copyUrl() {
 
 function clearAll() {
 	document.getElementById("textbox").value = "";
+	document.getElementById("multi").innerHTML = "";
 	document.getElementById('bigpic').style.display='none';
 	editUrl();
 }
