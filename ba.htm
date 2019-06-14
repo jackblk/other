@@ -189,7 +189,7 @@ function imgError() {
 
 window.onload = function() {
 	var url = window.location.href;
-	url = url.replace("%40", "@");
+	url = url.replace(/%40/g,'@');
 	//var reg = url.match(/(\.html*\?email=)(\S+@\S*bosch\.com)/i); //regex to check for argument
 	var reg = emailFormatter(url);
 	if (reg != '') {
