@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bosch Avatar Grabber</title>
+
 <link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/12843654?s=32&v=4">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
@@ -33,7 +33,7 @@
 
 .textarea:focus {
 	background: none repeat scroll 0 0 #FFFFFF;
-	display: inline
+	display: inline;
 	outline-width: 0;
 }
 
@@ -82,8 +82,7 @@
 
 </style>
 
-<title></title>
-
+<title>Bosch Avatar Grabber</title>
 
 </head>
 
@@ -128,11 +127,12 @@ function insertText(){
 function multiPic() {
 	var input = document.getElementById("textbox").value;
 	var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+	var src = document.getElementById("multi");
+	src.innerHTML = '';
 	for (var i in emails) {
 		console.log(emails[i]);
 		var img = document.createElement("img");
 		img.src = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + emails[i] + "&UA=0&size=HR648x648";
-		var src = document.getElementById("multi");
 		src.appendChild(img);
 	}
 }
@@ -152,7 +152,7 @@ function picture(){
 		var piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
 		document.getElementById('bigpic').src = piclink;
 		document.getElementById('loading').style.visibility='visible';
-		<!-- document.getElementById('directlink').href=piclink; -->
+		//document.getElementById('directlink').href=piclink;
 		editUrl(email);
 		// display image if successfully loaded
 		bigpic.onload = function() {
