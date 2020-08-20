@@ -22,48 +22,46 @@ var doorsBtn_elem_id = 'storeapp-details-link'
 var timer;
 
 //Config init
-GM_config.init(
+GM_config.init({
+    'id': 'doorConfig', // The id used for this instance of GM_config
+    'title': 'DOORS Auto Settings', // Panel Title
+    'fields': // Fields object
     {
-      'id': 'doorConfig', // The id used for this instance of GM_config
-      'title': 'DOORS Auto Settings', // Panel Title
-      'fields': // Fields object
-      {
         'autoClick': // This is the id of the field
         {
-          'label': 'Auto click all buttons?', // Appears next to field
-          'section':['Config option', 'Auto click all buttons will auto click login button after auto filling, and will open DOORS when you are logged in.'],
-          'type': 'checkbox', // Makes this setting a text field
-          'default': 'true' // Default value if user doesn't change it
+            'label': 'Auto click all buttons?', // Appears next to field
+            'section': ['Config option', 'Auto click all buttons will auto click login button after auto filling, and will open DOORS when you are logged in.'],
+            'type': 'checkbox', // Makes this setting a text field
+            'default': 'true' // Default value if user doesn't change it
         },
         'user': // This is the id of the field
         {
-          'label': 'Username', // Appears next to field
-          'type': 'text', // Makes this setting a text field
-          'default': 'apac\\', // Default value if user doesn't change it
-          'section':['Account', 'Enter your account credentials']
+            'label': 'Username', // Appears next to field
+            'type': 'text', // Makes this setting a text field
+            'default': 'apac\\', // Default value if user doesn't change it
+            'section': ['Account', 'Enter your account credentials']
         },
         'password': // This is the id of the field
         {
-          'label': 'Password', // Appears next to field
-          'type': 'text', // Makes this setting a text field
-          'default': '' // Default value if user doesn't change it
+            'label': 'Password', // Appears next to field
+            'type': 'text', // Makes this setting a text field
+            'default': '' // Default value if user doesn't change it
         }
-    }
+    },
+    'css': '#doorConfig_field_password {-webkit-text-security: disc;}'
 });
 var username = GM_config.get('user');
 var password = GM_config.get('password');
 var auto_click = GM_config.get('autoClick');;
 $('body').append('<input type="button" value="Settings" id="CP">')
 $("#CP").css("position", "fixed").css("top", 0).css("left", 0).css("background", "goldenrod").css("padding", "10px 30px");
-// $("#doorConfig_field_password").attr('type','password');
-$('#CP').click(function(){
+$('#CP').click(function() {
     GM_config.open();
-    }
-);
-    
+});
+
 
 // Main function
-$(document).ready(function(){
+$(document).ready(function() {
     'use strict';
     if (password == '') {
         GM_config.open();
@@ -76,8 +74,7 @@ $(document).ready(function(){
 // Functions
 function open_doors(retry = true) {
     console.log("Open doors", retry);
-    if(document.getElementsByClassName(doorsBtn_elem_id).length != 0)
-    {
+    if (document.getElementsByClassName(doorsBtn_elem_id).length != 0) {
         auto_click ? document.getElementsByClassName(doorsBtn_elem_id)[0].click() : console.log("auto click disabled");
         //setTimeout(window.close, 1000);
         console.log("done, stop all timer");
@@ -89,15 +86,12 @@ function open_doors(retry = true) {
 
 function fill_doors_form() {
     console.log("finding username elem");
-    if(document.getElementById(username_elem_id))
-    {
+    if (document.getElementById(username_elem_id)) {
         document.getElementById(username_elem_id).value = username;
         document.getElementById(password_elem_id).value = password;
         timer = setTimeout(open_doors, waitAfterLogin);
         auto_click ? document.getElementById(loginBtn_elem_id).click() : console.log("auto click disabled");
-    }
-    else
-    {
+    } else {
         timer = setTimeout(fill_doors_form, waitRetry);
         open_doors(false);
     }
