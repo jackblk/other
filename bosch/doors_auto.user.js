@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DOORS Auto
 // @namespace    http://ranhchim.ml/
-// @version      0.1
+// @version      0.2
 // @description  auto login citrix for you
 // @author       Tong & Trung
 // @match        https://abt-ism-xd.de.bosch.com/Citrix/ismXenWeb/
