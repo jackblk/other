@@ -78,7 +78,6 @@
 			margin-top: 20px;
 		}
 
-		/* Large rectangular layout for our high-resolution avatars */
 		#multi img {
 			margin: 15px;
 			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -127,7 +126,6 @@
 		<button type="button" class="btn" onclick="copyUrl()">Copy link</button>
 	</div>
 
-	<!-- Container for dynamic login prompt -->
 	<div id="auth-alert-container"></div>
 
 	<hr width="648px">
@@ -142,13 +140,11 @@
 
 	<script type='text/javascript'>
 		function insertText() {
-			// Scrubbed: Changed to a generic example email
 			document.getElementById("textbox").value = "example.user@cn.bosch.com";
 		}
 
 		function showAuthWarning() {
 			var container = document.getElementById("auth-alert-container");
-			// Only add the warning if it isn't already displayed
 			if (!document.getElementById("auth-warning-box")) {
 				var warningBox = document.createElement("div");
 				warningBox.id = "auth-warning-box";
@@ -170,11 +166,9 @@
 			input = emailFormatter(input);
 			document.getElementById("textbox").value = input;
 
-			// Extract the list of emails
 			var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
 			var src = document.getElementById("multi");
 
-			// Empty containers before starting new search
 			src.innerHTML = '';
 			removeAuthWarning();
 
@@ -185,28 +179,22 @@
 
 			document.getElementById('loading').style.visibility = 'visible';
 
-			// Loop and add the pictures
 			for (var i = 0; i < emails.length; i++) {
 				let email = emails[i].trim();
 				if (!email) continue;
 
-				// Scrubbed: Removed explicit named exemption check blocks for individual users to prevent leakage
-
 				var img = document.createElement("img");
 
-				// Set the high-res SharePoint Online image endpoint
 				img.src = "https://bosch.sharepoint.com/_layouts/15/userphoto.aspx?size=L&accountname=" + encodeURIComponent(email);
 
-				// Hide loading indicator when image successfully renders
 				img.onload = function () {
 					document.getElementById('loading').style.visibility = 'hidden';
 				};
 
-				// Option 2 Implementation: Fallback to placeholder and display warning
 				img.onerror = function () {
 					this.src = "https://avatars.githubusercontent.com/u/12843654?s=150";
 					document.getElementById('loading').style.visibility = 'hidden';
-					showAuthWarning(); // Triggers the prompt to let users know they must login
+					showAuthWarning();
 				};
 
 				src.appendChild(img);
@@ -273,7 +261,10 @@
 
 		function copyUrl() {
 			var textArea = document.createElement("textarea");
-			textArea.value = window.location.origin + window.location.pathname + '?email=' + document.getElementById("textbox").value;
+			// FIXED: Dynamically capture the current host URL instead of hardcoding personal profile links
+			var currentUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+			textArea.value = currentUrl + '?email=' + document.getElementById("textbox").value;
+
 			document.body.appendChild(textArea);
 			textArea.select();
 			document.execCommand("Copy");
@@ -286,6 +277,14 @@
 			document.getElementById('loading').style.visibility = 'hidden';
 			removeAuthWarning();
 			editUrl();
+		}
+	</script>
+	<script>
+		if (window.parent && window.parent.parent) {
+			window.parent.parent.postMessage(["resultsFrame", {
+				height: document.body.getBoundingClientRect().height,
+				slug: "gfqegg21"
+			}], "\*")
 		}
 	</script>
 </body>
