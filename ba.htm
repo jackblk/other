@@ -1,274 +1,292 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
+	<link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/12843654?s=32&v=4">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="googlebot" content="noindex, nofollow">
+	<style type="text/css">
+		body {
+			background: #F0F0F0;
+			font-family: 'Segoe UI', sans-serif;
+		}
 
-<link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/12843654?s=32&v=4">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex, nofollow">
-<style type="text/css">
-.body {background: #F0F0F0;}
+		.textarea {
+			padding: 5px;
+			font-size: 16px;
+			border-width: 1px;
+			border-color: #CCCCCC;
+			background-color: #FFFFFF;
+			background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+			color: #000000;
+			border-style: solid;
+			border-radius: 3px;
+			box-shadow: 0px 0px 5px rgba(66, 66, 66, .75);
+			text-align: center;
+			line-height: 1.4em;
+		}
 
-.invi {
-	display: none;
-	visibility: hidden;
-}
+		.textarea:focus {
+			background: none repeat scroll 0 0 #FFFFFF;
+			display: inline;
+			outline-width: 0;
+		}
 
-.textarea {
-	 padding: 5px;
-     font-size: 16px;
-     border-width: 1px;
-     border-color: #CCCCCC;
-     background-color: #FFFFFF;
-	 background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
-     color: #000000;
-     border-style: solid;
-     border-radius: 3px;
-     box-shadow: 0px 0px 5px rgba(66,66,66,.75);
-	 text-align: center;
-	 line-height: 1.4em;
-}
+		.h1 {
+			color: #235ebc;
+			font-family: 'Segoe UI', serif;
+			font-size: 45px;
+			font-weight: normal;
+			line-height: 48px;
+			margin: 0 0 5px;
+			text-align: center;
+		}
 
+		.p {
+			color: #4c4a37;
+			font-size: 18px;
+			line-height: 32px;
+			margin: auto;
+			text-align: center;
+			font-weight: bold;
+		}
 
-.textarea:focus {
-	background: none repeat scroll 0 0 #FFFFFF;
-	display: inline;
-	outline-width: 0;
-}
+		.wrapper {
+			text-align: center;
+			margin-top: 10px;
+		}
 
-.h1 { color: #235ebc; font-family: 'Segoe UI', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0 0 5px; text-align: center; }
+		.btn {
+			background-color: #555555;
+			border: none;
+			border-radius: 5px;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
+		}
 
-.p { color: #4c4a37; font-family: 'Segoe UI', sans-serif; font-size: 18px; line-height: 32px; margin: auto; text-align: center; font-weight: bold;}
+		.btn:hover {
+			background: #201d7a;
+		}
 
-.wrapper {
-	text-align: center;
-}
+		#multi {
+			margin-top: 20px;
+		}
 
-.btn {
-	background-color: #555555;
-	border: none;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 5px;
-	color: white;
-	padding: 10px 20px 10px 20px;
-		text-align: center;
-		text-decoration: none;
-	display: inline-block;
-		font-size: 16px;
-		text-decoration: none;	
-}
+		#multi img {
+			margin: 15px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+			border-radius: 4px;
+			max-width: 648px;
+			height: auto;
+		}
 
-.btn:hover {
-	background: #201d7a;
-	text-decoration: none;
-}
+		.auth-warning {
+			background-color: #ffdde1;
+			border: 1px solid #ff4a5a;
+			color: #bd1f2d;
+			padding: 12px;
+			border-radius: 5px;
+			margin: 15px auto;
+			max-width: 640px;
+			text-align: center;
+			font-size: 14px;
+			font-weight: bold;
+		}
 
-	
-.counter {
-	margin: 5px;
-	height: 20px;
-	width: 648px;
-	display: inline-block;
-	position: relative;
-}
+		.auth-warning a {
+			color: #235ebc;
+			text-decoration: underline;
+		}
+	</style>
 
-#bottom-right
-{
-	right: 0;
-	bottom: 0;
-	position: absolute;
-}
-
-</style>
-
-<title>Bosch Avatar Grabber</title>
-
+	<title>Enterprise Avatar Grabber</title>
 </head>
 
 <body>
-<div class="h1">Bosch Avatar Grabber</div>
+	<div class="h1">Enterprise Avatar Grabber</div>
 
-<p class="p">Type in Bosch Email then press GRAB IT!</p>
+	<p class="p">Type in Corporate Email then press GRAB IT!</p>
 
-<div class="wrapper">
-<input id="textbox" size="30" class="textarea" spellcheck="false" onkeypress="return searchKeyPress(event);">
-<button type="button" id="grabbtn" class="btn" onclick="multiPic()">GRAB IT!</button>
-</div>
+	<div class="wrapper">
+		<input id="textbox" size="30" class="textarea" spellcheck="false" onkeypress="return searchKeyPress(event);">
+		<button type="button" id="grabbtn" class="btn" onclick="multiPic()">GRAB IT!</button>
+	</div>
 
-<p></p>
+	<p></p>
 
-<div class="wrapper">
-<button type="button" class="btn" onclick="insertText()">Insert Sample</button>
-<button type="button" class="btn" onclick="clearAll()">Clear</button>
-<button type="button" class="btn" onclick="copyUrl()">Copy link</button>
-</div>
+	<div class="wrapper">
+		<button type="button" class="btn" onclick="insertText()">Insert Sample</button>
+		<button type="button" class="btn" onclick="clearAll()">Clear</button>
+		<button type="button" class="btn" onclick="copyUrl()">Copy link</button>
+	</div>
 
+	<div id="auth-alert-container"></div>
 
-<hr width="648px">
+	<hr width="648px">
 
-<div class="wrapper" id="multi"></div>
+	<div class="wrapper" id="multi"></div>
 
-<div style="height: 30px;">
-<center><p id="loading" style="visibility: hidden;">Loading...</p></center>
-</div>
+	<div style="height: 30px;">
+		<center>
+			<p id="loading" style="visibility: hidden;">Loading...</p>
+		</center>
+	</div>
 
-<div style="height: 648px;">
-	<div><center><img id="bigpic" style="display:none;" onerror="imgError();"></center></div>
-</div>
+	<script type='text/javascript'>
+		function insertText() {
+			document.getElementById("textbox").value = "example.user@cn.bosch.com";
+		}
 
-
-<script type='text/javascript'>
-
-function insertText(){
-	document.getElementById("textbox").value = "Yogi.XUE@cn.bosch.com";
-}
-
-function multiPic() {
-	var input = document.getElementById("textbox").value;
-	input = emailFormatter(input);
-	document.getElementById("textbox").value = input;
-	var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
-	var src = document.getElementById("multi");
-	src.innerHTML = '';
-	for (var i in emails) {
-		console.log(emails[i]);
-		var img = document.createElement("img");
-		img.src = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + emails[i] + "&UA=0&size=HR648x648";
-		src.appendChild(img);
-	}
-	editUrl(emails)
-}
-
-function picture(){ 
-	var email = document.getElementById("textbox").value;
-	var regexEmail = new RegExp(/(\S+)@(\S*bosch\.com)/,'i');
-	// Add exception => not grabbing
-	if (email.match(/((tong\.vuuVan)|(trung\.lethien))@\S*bosch\.com/i)) {
-		console.log("lul");
-		document.getElementById('bigpic').style.display='none';
-		return;
-	}
-	
-	if (regexEmail.test(email)) {
-		var reg = email.match(regexEmail); //regex to check bosch email
-		var piclink = "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + reg[1] + "%40" + reg [2] + "&UA=0&size=HR648x648";
-		document.getElementById('bigpic').src = piclink;
-		document.getElementById('loading').style.visibility='visible';
-		//document.getElementById('directlink').href=piclink;
-		editUrl(email);
-		// display image if successfully loaded
-		bigpic.onload = function() {
-			if (bigpic.naturalHeight){
-				document.getElementById('bigpic').style.display='block';
-				document.getElementById('loading').style.visibility='hidden';
+		function showAuthWarning() {
+			var container = document.getElementById("auth-alert-container");
+			if (!document.getElementById("auth-warning-box")) {
+				var warningBox = document.createElement("div");
+				warningBox.id = "auth-warning-box";
+				warningBox.className = "auth-warning";
+				warningBox.innerHTML = '⚠️ <strong>Authentication Required:</strong> To view high-resolution avatars, please open <a href="https://bosch.sharepoint.com" target="_blank">SharePoint</a> in this browser session to sign in, then try grabbing again.';
+				container.appendChild(warningBox);
 			}
 		}
-		return;
-	}
-	alert("Please enter valid Bosch Email, for example: abc@vn.bosch.com");
-}
 
-
-function searchKeyPress(e)
-{
-	// look for window.event in case event isn't passed in
-	e = e || window.event;
-	if (e.keyCode == 13)
-	{
-		document.getElementById('grabbtn').click();
-		return false;
-	}
-	return true;
-}
-
-function imgError() {
-	alert("Can't fetch avatar. Possible reason: you are not connected to Bosch internal network / Wrong email / Email does not have photo.");
-	document.getElementById('loading').style.visibility='hidden';
-}
-
-window.onload = function() {
-	var url = window.location.href;
-	url = url.replace(/%40/g,'@');
-	url = url.replace(/%2c/g,',');
-	//var reg = url.match(/(\.html*\?email=)(\S+@\S*bosch\.com)/i); //regex to check for argument
-	var reg = emailFormatter(url);
-	if (reg != '') {
-		document.getElementById("textbox").value = reg;
-		document.getElementById("textbox").focus();
-		// picture();
-		multiPic();
-	} else {
-		editUrl();
-	}
-}
-
-function emailFormatter(input) {
-	var reg = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
-	var emails = '';
-	if (reg != null) {
-		for (var i=0; i < reg.length; i++) {
-			emails = emails + reg[i] + ',';
+		function removeAuthWarning() {
+			var warningBox = document.getElementById("auth-warning-box");
+			if (warningBox) {
+				warningBox.remove();
+			}
 		}
-		return emails;
-	} else {
-		return '';
-	}
-	
-}
 
-function editUrl (email){
-	var regexHtml = new RegExp(/^.*\.html*/,'i');
-	if (email != null) {
-		if (history.pushState) {
-			window.history.pushState({}, email, '?email=' + email);
-		} else { // use this way if old browser, will reload the page
+		function multiPic() {
+			var input = document.getElementById("textbox").value;
+			input = emailFormatter(input);
+			document.getElementById("textbox").value = input;
+
+			var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+			var src = document.getElementById("multi");
+
+			src.innerHTML = '';
+			removeAuthWarning();
+
+			if (!emails || emails.length === 0) {
+				alert("Please enter a valid Corporate Email.");
+				return;
+			}
+
+			document.getElementById('loading').style.visibility = 'visible';
+
+			for (var i = 0; i < emails.length; i++) {
+				let email = emails[i].trim();
+				if (!email) continue;
+
+				var img = document.createElement("img");
+
+				img.src = "https://bosch.sharepoint.com/_layouts/15/userphoto.aspx?size=L&accountname=" + encodeURIComponent(email);
+
+				img.onload = function () {
+					document.getElementById('loading').style.visibility = 'hidden';
+				};
+
+				img.onerror = function () {
+					this.src = "https://avatars.githubusercontent.com/u/12843654?s=150";
+					document.getElementById('loading').style.visibility = 'hidden';
+					showAuthWarning();
+				};
+
+				src.appendChild(img);
+			}
+
+			editUrl(emails);
+		}
+
+		function searchKeyPress(e) {
+			e = e || window.event;
+			if (e.keyCode == 13) {
+				document.getElementById('grabbtn').click();
+				return false;
+			}
+			return true;
+		}
+
+		window.onload = function () {
 			var url = window.location.href;
-			window.location.href = url.match(regexHtml) + '?email=' + email;
+			url = url.replace(/%40/g, '@');
+			url = url.replace(/%2c/g, ',');
+			var reg = emailFormatter(url);
+			if (reg != '') {
+				document.getElementById("textbox").value = reg;
+				document.getElementById("textbox").focus();
+				multiPic();
+			} else {
+				editUrl();
+			}
 		}
-	} else { // if email is null
-		if (history.pushState) {
-			var url = window.location.href.match(regexHtml);
-			window.history.pushState({}, email, url);
-		} else { // use this way if old browser, will reload the page
-			var url = window.location.href;
-			window.location.href = url.match(regexHtml);
+
+		function emailFormatter(input) {
+			var reg = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+			var emails = '';
+			if (reg != null) {
+				for (var i = 0; i < reg.length; i++) {
+					emails = emails + reg[i] + ',';
+				}
+				return emails;
+			} else {
+				return '';
+			}
 		}
-	}
-}
 
-function copyUrl() {
-	// if (document.getElementById('bigpic').style.display != 'block') {
-	// 	alert("Please grab avatar before copying");
-	// 	return;
-	// }
-	var textArea = document.createElement("textarea");
-	textArea.value = 'https://jackblk.github.io/other/ba.htm?email=' + document.getElementById("textbox").value;
-	document.body.appendChild(textArea);
-	textArea.select();
-	document.execCommand("Copy");
-	textArea.remove();
-}
+		function editUrl(email) {
+			var regexHtml = new RegExp(/^.*\.html*/, 'i');
+			if (email != null) {
+				if (history.pushState) {
+					window.history.pushState({}, email, '?email=' + email);
+				} else {
+					var url = window.location.href;
+					window.location.href = url.match(regexHtml) + '?email=' + email;
+				}
+			} else {
+				if (history.pushState) {
+					var url = window.location.href.match(regexHtml);
+					window.history.pushState({}, email, url);
+				} else {
+					var url = window.location.href;
+					window.location.href = url.match(regexHtml);
+				}
+			}
+		}
 
-function clearAll() {
-	document.getElementById("textbox").value = "";
-	document.getElementById("multi").innerHTML = "";
-	document.getElementById('bigpic').style.display='none';
-	editUrl();
-}
-</script>
+		function copyUrl() {
+			var textArea = document.createElement("textarea");
+			// FIXED: Dynamically capture the current host URL instead of hardcoding personal profile links
+			var currentUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+			textArea.value = currentUrl + '?email=' + document.getElementById("textbox").value;
 
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand("Copy");
+			textArea.remove();
+		}
 
-<script>
-// tell the embed parent frame the height of the content
-if (window.parent && window.parent.parent){
-	window.parent.parent.postMessage(["resultsFrame", {
-height: document.body.getBoundingClientRect().height,
-slug: "gfqegg21"
-	}], "*")
-}
-</script>
-
+		function clearAll() {
+			document.getElementById("textbox").value = "";
+			document.getElementById("multi").innerHTML = "";
+			document.getElementById('loading').style.visibility = 'hidden';
+			removeAuthWarning();
+			editUrl();
+		}
+	</script>
+	<script>
+		if (window.parent && window.parent.parent) {
+			window.parent.parent.postMessage(["resultsFrame", {
+				height: document.body.getBoundingClientRect().height,
+				slug: "gfqegg21"
+			}], "\*")
+		}
+	</script>
 </body>
 
 </html>
