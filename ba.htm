@@ -1,155 +1,632 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/12843654?s=32&v=4">
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
-	<style type="text/css">
+	<link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/12843654?s=32&v=4">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- display=optional: never swap fonts after first paint, so text does not re-flow -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=optional">
+	<style>
+		:root {
+			--bg: #EEF1F4;
+			--surface: #FFFFFF;
+			--ink: #1C2430;
+			--muted: #5B6675;
+			--line: #D3D9E0;
+			--skeleton: #E2E7EC;
+			--accent: #235EBC;
+			--accent-ink: #FFFFFF;
+			--accent-soft: rgba(35, 94, 188, 0.1);
+			--error: #B3261E;
+			--error-bg: #FBEAE9;
+			--success: #2E7D32;
+			--warning: #E0A020;
+			--shadow: 0 1px 2px rgba(28, 36, 48, 0.08), 0 6px 16px rgba(28, 36, 48, 0.08);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--bg: #151A21;
+				--surface: #1F2630;
+				--ink: #E6EAF0;
+				--muted: #9AA5B4;
+				--line: #323B47;
+				--skeleton: #2A323D;
+				--accent: #7FA7F2;
+				--accent-ink: #0E1420;
+				--accent-soft: rgba(127, 167, 242, 0.14);
+				--error: #F2847C;
+				--error-bg: #3A2224;
+				--success: #7BC67F;
+				--warning: #B07A10;
+				--shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3);
+			}
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
 		body {
-			background: #F0F0F0;
-			font-family: 'Segoe UI', sans-serif;
-		}
-
-		.textarea {
-			padding: 5px;
+			margin: 0;
+			background: var(--bg);
+			color: var(--ink);
+			font-family: 'Archivo', Arial, sans-serif;
 			font-size: 16px;
-			border-width: 1px;
-			border-color: #CCCCCC;
-			background-color: #FFFFFF;
-			background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
-			color: #000000;
-			border-style: solid;
-			border-radius: 3px;
-			box-shadow: 0px 0px 5px rgba(66, 66, 66, .75);
-			text-align: center;
-			line-height: 1.4em;
+			line-height: 1.5;
 		}
 
-		.textarea:focus {
-			background: none repeat scroll 0 0 #FFFFFF;
-			display: inline;
-			outline-width: 0;
+		a {
+			color: var(--accent);
 		}
 
-		.h1 {
-			color: #235ebc;
-			font-family: 'Segoe UI', serif;
-			font-size: 45px;
-			font-weight: normal;
-			line-height: 48px;
-			margin: 0 0 5px;
-			text-align: center;
+		:focus-visible {
+			outline: 2px solid var(--accent);
+			outline-offset: 2px;
 		}
 
-		.p {
-			color: #4c4a37;
-			font-size: 18px;
-			line-height: 32px;
-			margin: auto;
-			text-align: center;
+		main {
+			position: relative;
+			max-width: 720px;
+			margin: 0 auto;
+			padding: 56px 16px 96px;
+		}
+
+		.top {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 40px;
+			font-weight: 800;
+			line-height: 1.1;
+			letter-spacing: -0.01em;
+		}
+
+		.info-btn {
+			flex: none;
+			width: 28px;
+			height: 28px;
+			padding: 0;
+			border: 2px solid var(--accent);
+			border-radius: 50%;
+			background: none;
+			color: var(--accent);
+			font-family: Georgia, serif;
+			font-size: 16px;
 			font-weight: bold;
-		}
-
-		.wrapper {
-			text-align: center;
-			margin-top: 10px;
-		}
-
-		.btn {
-			background-color: #555555;
-			border: none;
-			border-radius: 5px;
-			color: white;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
+			line-height: 1;
 			cursor: pointer;
 		}
 
-		.btn:hover {
-			background: #201d7a;
+		.info-btn[aria-expanded="true"] {
+			background: var(--accent);
+			color: var(--accent-ink);
+		}
+
+		/* floats over the page, so opening it never moves the layout */
+		.info {
+			position: absolute;
+			top: calc(100% + 10px);
+			right: 0;
+			z-index: 10;
+			width: 340px;
+			max-width: 100%;
+			padding: 14px 16px;
+			border-left: 3px solid var(--accent);
+			border-radius: 4px;
+			background: var(--surface);
+			box-shadow: var(--shadow);
+			font-size: 15px;
+		}
+
+		.info p {
+			margin: 0 0 6px;
+		}
+
+		.lede {
+			margin: 12px 0 28px;
+			color: var(--muted);
+		}
+
+		.search {
+			display: flex;
+			gap: 8px;
+		}
+
+		.field {
+			position: relative;
+			display: flex;
+			flex: 1;
+			min-width: 0;
+		}
+
+		.search input {
+			flex: 1;
+			min-width: 0;
+			height: 48px;
+			padding: 0 44px 0 14px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: var(--surface);
+			color: var(--ink);
+			font: inherit;
+		}
+
+		.search input::placeholder {
+			color: var(--muted);
+		}
+
+		.clear-btn {
+			position: absolute;
+			top: 50%;
+			right: 8px;
+			width: 30px;
+			height: 30px;
+			padding: 0;
+			transform: translateY(-50%);
+			border: none;
+			border-radius: 50%;
+			background: none;
+			color: var(--muted);
+			font: inherit;
+			font-size: 22px;
+			line-height: 1;
+			cursor: pointer;
+		}
+
+		.clear-btn:hover {
+			background: var(--accent-soft);
+			color: var(--ink);
+		}
+
+		/* only offer clearing when there is something to clear */
+		.search input:placeholder-shown + .clear-btn {
+			visibility: hidden;
+		}
+
+		.primary {
+			height: 48px;
+			padding: 0 28px;
+			border: none;
+			border-radius: 8px;
+			background: var(--accent);
+			color: var(--accent-ink);
+			font: inherit;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.controls {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			margin-top: 16px;
+		}
+
+		.source {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.segmented {
+			display: inline-flex;
+			padding: 3px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: var(--surface);
+		}
+
+		.segmented input {
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.segmented span {
+			display: block;
+			padding: 6px 12px;
+			border-radius: 6px;
+			color: var(--ink);
+			cursor: pointer;
+		}
+
+		.segmented input:checked + span {
+			background: var(--accent);
+			color: var(--accent-ink);
+			font-weight: 600;
+		}
+
+		.segmented input:focus-visible + span {
+			outline: 2px solid var(--accent);
+			outline-offset: 1px;
+		}
+
+		.actions {
+			display: flex;
+			gap: 4px;
+		}
+
+		/* hidden with visibility, not display, so it keeps its space in both modes */
+		.source-hint {
+			margin: 8px 0 0;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.source-hint.off {
+			visibility: hidden;
+		}
+
+		.ghost {
+			padding: 6px 10px;
+			border: none;
+			border-radius: 6px;
+			background: none;
+			color: var(--accent);
+			font: inherit;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.ghost:hover {
+			background: var(--accent-soft);
 		}
 
 		#multi {
-			margin-top: 20px;
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 20px;
+			margin-top: 36px;
 		}
 
-		#multi img {
-			margin: 15px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+		/* an ID badge: lanyard slot, photo, then the email */
+		.badge {
+			position: relative;
+			padding: 30px 14px 14px;
+			border-radius: 12px;
+			background: var(--surface);
+			box-shadow: var(--shadow);
+		}
+
+		.badge::before {
+			content: "";
+			position: absolute;
+			top: 11px;
+			left: 50%;
+			width: 44px;
+			height: 7px;
+			transform: translateX(-50%);
 			border-radius: 4px;
-			max-width: 648px;
-			height: auto;
+			background: var(--bg);
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+		}
+
+		/* fixed square, so loading, loaded and failed states are the same size */
+		.photo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			aspect-ratio: 1;
+			overflow: hidden;
+			border-radius: 6px;
+			background: var(--skeleton);
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.photo img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.badge.loading .photo {
+			animation: pulse 1.2s ease-in-out infinite alternate;
+		}
+
+		.badge.loading img {
+			visibility: hidden;
+		}
+
+		.badge.miss .photo {
+			border: 1.5px dashed var(--line);
+			background: none;
+		}
+
+		/* hidden but still taking up space, so failed badges keep their height */
+		.badge.miss .open {
+			visibility: hidden;
+		}
+
+		.email {
+			margin-top: 12px;
+			font-size: 14px;
+			font-weight: 600;
+			overflow-wrap: anywhere;
+		}
+
+		.open {
+			font-size: 13px;
+		}
+
+		@keyframes pulse {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0.5;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.badge.loading .photo {
+				animation: none;
+			}
+
+			.toast {
+				transition: none;
+			}
 		}
 
 		.auth-warning {
-			background-color: #ffdde1;
-			border: 1px solid #ff4a5a;
-			color: #bd1f2d;
-			padding: 12px;
-			border-radius: 5px;
-			margin: 15px auto;
-			max-width: 640px;
-			text-align: center;
+			margin-top: 28px;
+			padding: 14px 16px;
+			border-left: 3px solid var(--error);
+			border-radius: 4px;
+			background: var(--error-bg);
 			font-size: 14px;
-			font-weight: bold;
 		}
 
-		.auth-warning a {
-			color: #235ebc;
-			text-decoration: underline;
+		#toast-container {
+			position: fixed;
+			left: 50%;
+			top: 16px;
+			z-index: 1000;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+			width: max-content;
+			max-width: calc(100% - 32px);
+			transform: translateX(-50%);
+		}
+
+		.toast {
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+			max-width: 480px;
+			padding: 10px 12px 10px 16px;
+			border-left: 4px solid var(--muted);
+			border-radius: 6px;
+			background: var(--ink);
+			color: var(--bg);
+			box-shadow: var(--shadow);
+			font-size: 14px;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		.toast.show {
+			opacity: 1;
+		}
+
+		.toast.error {
+			border-left-color: var(--error);
+		}
+
+		.toast.success {
+			border-left-color: var(--success);
+		}
+
+		.toast.warning {
+			border-left-color: var(--warning);
+		}
+
+		.toast-close {
+			flex: none;
+			padding: 0 2px;
+			border: none;
+			background: none;
+			color: inherit;
+			font: inherit;
+			font-size: 18px;
+			line-height: 1.1;
+			opacity: 0.7;
+			cursor: pointer;
+		}
+
+		.toast-close:hover {
+			opacity: 1;
+		}
+
+		@media (max-width: 520px) {
+			main {
+				padding-top: 32px;
+			}
+
+			h1 {
+				font-size: 30px;
+			}
+
+			.search {
+				flex-direction: column;
+			}
+
+			.field {
+				flex: none;
+			}
+
+			/* line up the text of the first ghost button with the content edge */
+			.actions {
+				margin-left: -10px;
+			}
+
+			#multi {
+				grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+				gap: 14px;
+			}
 		}
 	</style>
 
-	<title>Enterprise Avatar Grabber</title>
+	<title>Bosch Avatar Grabber</title>
 </head>
 
 <body>
-	<div class="h1">Enterprise Avatar Grabber</div>
+	<main>
+		<header class="top">
+			<h1>Bosch Avatar Grabber</h1>
+			<button type="button" class="info-btn" title="About" aria-label="About" aria-expanded="false" aria-controls="info" onclick="toggleInfo()">i</button>
 
-	<p class="p">Type in Corporate Email then press GRAB IT!</p>
+			<div class="info" id="info" hidden>
+				<p>I made this tool back when Bosch avatars were served from OWA. I left Bosch years ago, so I can't test it myself anymore. I know some people still use it, so if something breaks, open a pull request and I'll merge it.</p>
+				<a href="https://github.com/jackblk/other" target="_blank" rel="noopener">github.com/jackblk/other</a>
+			</div>
+		</header>
 
-	<div class="wrapper">
-		<input id="textbox" size="30" class="textarea" spellcheck="false" onkeypress="return searchKeyPress(event);">
-		<button type="button" id="grabbtn" class="btn" onclick="multiPic()">GRAB IT!</button>
-	</div>
+		<p class="lede">Look up a colleague's profile photo by email. Separate several emails with commas.</p>
 
-	<p></p>
+		<div class="search">
+			<div class="field">
+				<input id="textbox" type="text" spellcheck="false" autocomplete="off" placeholder="name@vn.bosch.com" aria-label="Bosch emails" onkeypress="return searchKeyPress(event);">
+				<button type="button" class="clear-btn" title="Clear" aria-label="Clear" onclick="clearAll()">×</button>
+			</div>
+			<button type="button" id="grabbtn" class="primary" onclick="multiPic()">Grab</button>
+		</div>
 
-	<div class="wrapper">
-		<button type="button" class="btn" onclick="insertText()">Insert Sample</button>
-		<button type="button" class="btn" onclick="clearAll()">Clear</button>
-		<button type="button" class="btn" onclick="copyUrl()">Copy link</button>
-	</div>
+		<div class="controls">
+			<div class="source">
+				<span id="source-label">Source</span>
+				<div class="segmented" role="radiogroup" aria-labelledby="source-label">
+					<label><input type="radio" name="mode" value="sharepoint" checked onchange="switchMode()"><span>SharePoint</span></label>
+					<label><input type="radio" name="mode" value="legacy" onchange="switchMode()"><span>Legacy OWA</span></label>
+				</div>
+			</div>
+			<div class="actions">
+				<button type="button" class="ghost" onclick="insertText()">Insert sample</button>
+				<button type="button" class="ghost" onclick="copyUrl()">Copy link</button>
+			</div>
+		</div>
 
-	<div id="auth-alert-container"></div>
+		<p class="source-hint" id="source-hint">Sign in to <a href="https://bosch.sharepoint.com" target="_blank" rel="noopener">SharePoint</a> in this browser first, or photos will not load.</p>
 
-	<hr width="648px">
+		<div id="multi"></div>
 
-	<div class="wrapper" id="multi"></div>
+		<!-- below the results, so showing it never pushes the badges down -->
+		<div id="auth-alert-container"></div>
+	</main>
 
-	<div style="height: 30px;">
-		<center>
-			<p id="loading" style="visibility: hidden;">Loading...</p>
-		</center>
-	</div>
+	<div id="toast-container" aria-live="polite"></div>
 
 	<script type='text/javascript'>
 		function insertText() {
-			document.getElementById("textbox").value = "example.user@cn.bosch.com";
+			document.getElementById("textbox").value = "trung.lethien@vn.bosch.com";
 		}
 
-		function showAuthWarning() {
+		// SharePoint "L" is the largest size userphoto.aspx serves (~300px); legacy OWA gave 648x648
+		var ENDPOINTS = {
+			sharepoint: {
+				url: function (email) {
+					return "https://bosch.sharepoint.com/_layouts/15/userphoto.aspx?size=L&accountname=" + encodeURIComponent(email);
+				},
+				hint: 'Make sure you are signed in to <a href="https://bosch.sharepoint.com" target="_blank" rel="noopener">SharePoint</a> in this browser and third-party cookies are not blocked.'
+			},
+			legacy: {
+				url: function (email) {
+					return "https://rb-owa.apac.bosch.com/ews/exchange.asmx/s/GetUserPhoto?email=" + encodeURIComponent(email) + "&UA=0&size=HR648x648";
+				},
+				hint: 'Make sure you are connected to the internal network.'
+			}
+		};
+
+		function toggleInfo() {
+			var info = document.getElementById("info");
+			info.hidden = !info.hidden;
+			document.querySelector(".info-btn").setAttribute("aria-expanded", String(!info.hidden));
+		}
+
+		// close the info panel on a click outside it, or on Escape
+		document.addEventListener("click", function (e) {
+			if (!document.getElementById("info").hidden && !e.target.closest("#info, .info-btn")) {
+				toggleInfo();
+			}
+		});
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && !document.getElementById("info").hidden) {
+				toggleInfo();
+			}
+		});
+
+		function getMode() {
+			return document.querySelector('input[name="mode"]:checked').value;
+		}
+
+		function updateSourceHint() {
+			document.getElementById("source-hint").classList.toggle("off", getMode() !== "sharepoint");
+		}
+
+		function switchMode() {
+			updateSourceHint();
+			if (getMode() === "legacy") {
+				toast("Internal users reported the OWA server is deprecated. Try the SharePoint source and sign in to SharePoint instead.", "warning", 10000);
+			}
+			if (document.getElementById("textbox").value) {
+				multiPic();
+			} else {
+				editUrl();
+			}
+		}
+
+		// type: 'error' | 'success' | 'warning'; fades out after duration ms (default 3s) or when dismissed
+		function toast(message, type, duration) {
+			var el = document.createElement("div");
+			el.className = "toast " + type;
+			var text = document.createElement("span");
+			text.textContent = message;
+			var close = document.createElement("button");
+			close.type = "button";
+			close.className = "toast-close";
+			close.setAttribute("aria-label", "Dismiss");
+			close.textContent = "×";
+			el.append(text, close);
+			document.getElementById("toast-container").appendChild(el);
+
+			function dismiss() {
+				el.classList.remove("show");
+				setTimeout(function () { el.remove(); }, 300);
+			}
+			close.onclick = dismiss;
+			setTimeout(function () { el.classList.add("show"); }, 10);
+			setTimeout(dismiss, duration || 3000);
+		}
+
+		function showAuthWarning(hint) {
 			var container = document.getElementById("auth-alert-container");
 			if (!document.getElementById("auth-warning-box")) {
 				var warningBox = document.createElement("div");
 				warningBox.id = "auth-warning-box";
 				warningBox.className = "auth-warning";
-				warningBox.innerHTML = '⚠️ <strong>Authentication Required:</strong> To view high-resolution avatars, please open <a href="https://bosch.sharepoint.com" target="_blank">SharePoint</a> in this browser session to sign in, then try grabbing again.';
+				warningBox.setAttribute("role", "alert");
+				warningBox.innerHTML = '<strong>Some photos could not be loaded.</strong> The email may be wrong, the person may have no photo, or access was denied. ' + hint + ' You can also switch the source above.';
 				container.appendChild(warningBox);
 			}
 		}
@@ -166,38 +643,47 @@
 			input = emailFormatter(input);
 			document.getElementById("textbox").value = input;
 
-			var emails = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+			var emails = input.match(/[\.\w\-]+@[\.\w\-]+\.com/gi);
 			var src = document.getElementById("multi");
 
 			src.innerHTML = '';
 			removeAuthWarning();
 
 			if (!emails || emails.length === 0) {
-				alert("Please enter a valid Corporate Email.");
+				toast("Please enter valid Bosch Email, for example: abc@vn.bosch.com", "error");
 				return;
 			}
 
-			document.getElementById('loading').style.visibility = 'visible';
+			var endpoint = ENDPOINTS[getMode()];
 
 			for (var i = 0; i < emails.length; i++) {
-				let email = emails[i].trim();
-				if (!email) continue;
+				var url = endpoint.url(emails[i]);
+				var badge = document.createElement("div");
+				badge.className = "badge loading";
+				badge.innerHTML = '<div class="photo"><img></div><div class="email"></div><a class="open" target="_blank" rel="noopener">Open full size</a>';
+				// allow a line break after the @ rather than mid-domain
+				var at = emails[i].indexOf("@") + 1;
+				var emailEl = badge.querySelector(".email");
+				emailEl.append(emails[i].slice(0, at), document.createElement("wbr"), emails[i].slice(at));
+				badge.querySelector(".open").href = url;
 
-				var img = document.createElement("img");
-
-				img.src = "https://bosch.sharepoint.com/_layouts/15/userphoto.aspx?size=L&accountname=" + encodeURIComponent(email);
-
+				var img = badge.querySelector("img");
+				img.alt = emails[i];
 				img.onload = function () {
-					document.getElementById('loading').style.visibility = 'hidden';
+					this.closest(".badge").classList.remove("loading");
 				};
-
+				// drop the img instead of loading another one, so a failure can't trigger onerror again
 				img.onerror = function () {
-					this.src = "https://avatars.githubusercontent.com/u/12843654?s=150";
-					document.getElementById('loading').style.visibility = 'hidden';
-					showAuthWarning();
+					var failed = this.closest(".badge");
+					// ignore images from a previous grab that finish after the results were replaced
+					if (!failed.isConnected) return;
+					failed.classList.remove("loading");
+					failed.classList.add("miss");
+					this.parentNode.textContent = "No photo";
+					showAuthWarning(endpoint.hint);
 				};
-
-				src.appendChild(img);
+				img.src = url;
+				src.appendChild(badge);
 			}
 
 			editUrl(emails);
@@ -216,6 +702,9 @@
 			var url = window.location.href;
 			url = url.replace(/%40/g, '@');
 			url = url.replace(/%2c/g, ',');
+			var mode = /[?&]mode=legacy\b/i.test(window.location.search) ? 'legacy' : 'sharepoint';
+			document.querySelector('input[name="mode"][value="' + mode + '"]').checked = true;
+			updateSourceHint();
 			var reg = emailFormatter(url);
 			if (reg != '') {
 				document.getElementById("textbox").value = reg;
@@ -227,7 +716,7 @@
 		}
 
 		function emailFormatter(input) {
-			var reg = input.match(/[\.\w\-]*@[\.\w\-]*\.com/gi);
+			var reg = input.match(/[\.\w\-]+@[\.\w\-]+\.com/gi);
 			var emails = '';
 			if (reg != null) {
 				for (var i = 0; i < reg.length; i++) {
@@ -239,52 +728,57 @@
 			}
 		}
 
+		// '' for the default (SharePoint) mode, so existing shared links stay unchanged
+		function modeQuery() {
+			return getMode() === 'legacy' ? 'mode=legacy' : '';
+		}
+
 		function editUrl(email) {
 			var regexHtml = new RegExp(/^.*\.html*/, 'i');
+			var mode = modeQuery();
 			if (email != null) {
+				var query = '?email=' + email + (mode ? '&' + mode : '');
 				if (history.pushState) {
-					window.history.pushState({}, email, '?email=' + email);
+					window.history.pushState({}, email, query);
 				} else {
 					var url = window.location.href;
-					window.location.href = url.match(regexHtml) + '?email=' + email;
+					window.location.href = url.match(regexHtml) + query;
 				}
 			} else {
+				var query = mode ? '?' + mode : '';
 				if (history.pushState) {
 					var url = window.location.href.match(regexHtml);
-					window.history.pushState({}, email, url);
+					window.history.pushState({}, email, url + query);
 				} else {
 					var url = window.location.href;
-					window.location.href = url.match(regexHtml);
+					window.location.href = url.match(regexHtml) + query;
 				}
 			}
 		}
 
 		function copyUrl() {
+			if (!document.getElementById("textbox").value) {
+				toast("Nothing to copy, enter an email first", "error");
+				return;
+			}
 			var textArea = document.createElement("textarea");
-			// FIXED: Dynamically capture the current host URL instead of hardcoding personal profile links
 			var currentUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-			textArea.value = currentUrl + '?email=' + document.getElementById("textbox").value;
+			var mode = modeQuery();
+			textArea.value = currentUrl + '?email=' + document.getElementById("textbox").value + (mode ? '&' + mode : '');
 
 			document.body.appendChild(textArea);
 			textArea.select();
 			document.execCommand("Copy");
 			textArea.remove();
+			toast("Link copied", "success");
 		}
 
 		function clearAll() {
 			document.getElementById("textbox").value = "";
+			document.getElementById("textbox").focus();
 			document.getElementById("multi").innerHTML = "";
-			document.getElementById('loading').style.visibility = 'hidden';
 			removeAuthWarning();
 			editUrl();
-		}
-	</script>
-	<script>
-		if (window.parent && window.parent.parent) {
-			window.parent.parent.postMessage(["resultsFrame", {
-				height: document.body.getBoundingClientRect().height,
-				slug: "gfqegg21"
-			}], "\*")
 		}
 	</script>
 </body>
